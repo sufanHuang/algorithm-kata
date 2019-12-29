@@ -1,0 +1,14 @@
+{
+  "name": "algorithm-kata",
+  "version": "1.0.0",
+  "description": "algorithm scripting with node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sufan Huang",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
+}
