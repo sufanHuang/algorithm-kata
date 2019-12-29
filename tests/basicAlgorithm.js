@@ -58,4 +58,56 @@ describe('basicAlgorithm functionality', () => {
             })
         })
     });
+
+    describe('factorializeNumber functionality', () => {
+
+        it('should return a number', () => {
+            let value = chance.integer()
+            let result = api.factorializeNumber(value)
+
+            expect(_.isNumber(result)).to.be.true
+        });
+
+        it('should return the factorial of the provided integer', () => {
+            let knownMapping = {
+                '5': 120,
+                '10': 3628800,
+                '20': 2432902008176640000,
+                '0': 1
+            }
+
+            let providedIntegers = _.keys(knownMapping)
+            _.each(providedIntegers, (value) => {
+                let result = api.factorializeNumber(value)
+                expect(result).to.equal(knownMapping[value])
+            })
+        })
+    });
+
+    describe('findLongestWordLength functionality', () => {
+
+        it('should return a number', () => {
+            let value = chance.integer()
+            let result = api.findLongestWordLength(value)
+
+            expect(_.isNumber(result)).to.be.true
+        });
+
+        it('should return the length of the longest word in the provided sentence', () => {
+            let knownMapping = {
+                'The quick brown fox jumped over the lazy dog': 6,
+                'May the force be with you': 5,
+                'Google do a barrel roll': 6,
+                'What is the average airspeed velocity of an unladen swallow': 8,
+                'What if we try a super-long word such as otorhinolaryngology': 19
+            }
+
+            let providedStrings = _.keys(knownMapping)
+            _.each(providedStrings, (value) => {
+                let result = api.findLongestWordLength(value)
+                expect(result).to.equal(knownMapping[value])
+            })
+        })
+    });
+
 });

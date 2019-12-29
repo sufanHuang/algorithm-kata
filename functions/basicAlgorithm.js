@@ -9,6 +9,24 @@ module.exports = {
 
     reverseString: (string)=>{
         return string.split('').reverse().join('')
+    },
+
+    factorializeNumber: (number)=>{
+        let result = 1
+        while(number>0){
+            result = result * number
+            number -= 1
+        }
+        return result
+    },
+
+    findLongestWordLength: (string)=>{
+        let stringArray = string.split(' ')
+        let letterArray = _.map(stringArray, word =>{
+            return word.split('').length
+        })
+
+        return Math.max(...letterArray)
     }
 
 }
