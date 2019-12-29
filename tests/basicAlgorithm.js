@@ -34,4 +34,28 @@ describe('basicAlgorithm functionality', () => {
             })
         })
     });
+
+    describe('reverseString functionality', () => {
+
+        it('should return a string', () => {
+            let value = chance.string()
+            let result = api.reverseString(value)
+
+            expect(_.isString(result)).to.be.true
+        });
+
+        it('should reverse string', () => {
+            let knownMapping = {
+                'hello': 'olleh',
+                'Howdy': 'ydwoH',
+                'Greetings from Earth': 'htraE morf sgniteerG',
+            }
+
+            let stringOrigins = _.keys(knownMapping)
+            _.each(stringOrigins, (string) => {
+                let result = api.reverseString(string)
+                expect(result).to.equal(knownMapping[string])
+            })
+        })
+    });
 });
