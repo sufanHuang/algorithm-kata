@@ -25,8 +25,17 @@ module.exports = {
         let letterArray = _.map(stringArray, word =>{
             return word.split('').length
         })
-
         return Math.max(...letterArray)
+    },
+
+    largestOfFour: (array) =>{
+        return _.map(array,item => Math.max(...item))
+    },
+
+    confirmEnding: (string, target) =>{
+        let endingLength = target.length
+        let endingSubString = string.substring(string.length - endingLength)
+        return endingSubString === target
     }
 
 }

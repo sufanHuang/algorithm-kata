@@ -38,7 +38,7 @@ describe('basicAlgorithm functionality', () => {
     describe('reverseString functionality', () => {
 
         it('should return a string', () => {
-            let value = chance.string()
+            let value = chance.word()
             let result = api.reverseString(value)
 
             expect(_.isString(result)).to.be.true
@@ -87,7 +87,7 @@ describe('basicAlgorithm functionality', () => {
     describe('findLongestWordLength functionality', () => {
 
         it('should return a number', () => {
-            let value = chance.integer()
+            let value = chance.word()
             let result = api.findLongestWordLength(value)
 
             expect(_.isNumber(result)).to.be.true
@@ -106,6 +106,42 @@ describe('basicAlgorithm functionality', () => {
             _.each(providedStrings, (value) => {
                 let result = api.findLongestWordLength(value)
                 expect(result).to.equal(knownMapping[value])
+            })
+        })
+    });
+
+    describe('largestOfFour functionality', () => {
+
+        it('should return an array consisting of the largest number from each provided subarray', () => {
+            let knownMapping = {
+                '[[13, 27, 18, 26], [4, 5, 1, 3], [32, 35, 37, 39], [1000, 1001, 857, 1]]': [27, 5, 39, 1001],
+                '[[4, 9, 1, 3], [13, 35, 18, 26], [32, 35, 97, 39], [1000000, 1001, 857, 1]]': [9, 35, 97, 1000000],
+                '[[17, 23, 25, 12], [25, 7, 34, 48], [4, -10, 18, 21], [-72, -3, -17, -10]]': [25, 48, 21, -3]
+            }
+
+            let providedArray = _.keys(knownMapping)
+            _.each(providedArray, (value) => {
+                let result = api.largestOfFour(JSON.parse(value))
+                expect(result).to.deep.equal(knownMapping[value])
+            })
+        })
+    });
+
+    describe('confirmEnding functionality', () => {
+
+        it( 'should check if a string ends with the given target string', ()=>{
+            let knowMapping = {
+                '["Bastian", "n"]': true,
+                '["Congratulation", "on"]': true,
+                '["Connor", "n"]': false,
+                '["Walking on water and developing software from a specification are easy if both are frozen", "specification"]': false,
+                '["Open sesame", "pen"]': false,
+            }
+
+            let providedArray = _.keys(knowMapping)
+            _.each(providedArray, (value)=>{
+                let result = api.confirmEnding(JSON.parse(value)[0],JSON.parse(value)[1])
+                expect(result).to.deep.equal(knowMapping[value])
             })
         })
     });
