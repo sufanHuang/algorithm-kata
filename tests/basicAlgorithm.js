@@ -146,4 +146,98 @@ describe('basicAlgorithm functionality', () => {
         })
     });
 
-});
+    describe('repeatString functionality', () => {
+
+        it( 'should repeat a given string for a number of times', ()=>{
+            let knowMapping = {
+                '["*", 3]': '***',
+                '["abc", 4]': 'abcabcabcabc',
+                '["abc", -2]': ''
+            }
+
+            let providedArray = _.keys(knowMapping)
+            _.each(providedArray, (value)=>{
+                let result = api.repeatString(JSON.parse(value)[0],JSON.parse(value)[1])
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+        })
+    });
+
+    describe('truncateString functionality', () => {
+
+        it( 'should truncate a string if it is longer than the given length', ()=>{
+            let knowMapping = {
+                '["A-tisket a-tasket A green and yellow basket", 8]': "A-tisket...",
+                '["A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length]': "A-tisket a-tasket A green and yellow basket",
+                '["A-", 1]': 'A...'
+            }
+
+            let providedArray = _.keys(knowMapping)
+            _.each(providedArray, (value)=>{
+                let result = api.truncateString(JSON.parse(value)[0],JSON.parse(value)[1])
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+        })
+    });
+
+    describe('finderKeepers functionality', () => {
+
+        it( 'should look through an array and returns the first element that passes a truth test', ()=>{
+            let knowMapping = {
+                '[[1, 3, 5, 8, 9, 10], function(num) { return num % 2 === 0]': 8,
+                '[[1, 3, 5, 9], function(num) { return num % 2 === 0]': undefined
+            }
+
+            let providedArray = _.keys(knowMapping)
+            _.each(providedArray, (value)=>{
+                let result = api.findersKeepers(JSON.parse(value)[0], JSON.parse(value)[1])
+                expect(result).to.deep.equal(knowMapping[value])
+
+            })
+        })
+    });
+
+    describe('booWho functionality', () => {
+
+        it('should check if a value is classified as a boolean primitive', ()=>{
+            let knowMapping = {
+                'true': true,
+                'false': true,
+                '[1,2,3]': false,
+                '"true"': false
+            }
+
+            let providedArray = _.keys(knowMapping)
+            _.each(providedArray,(value)=>{
+                let result = api.booWho(JSON.parse(value))
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+        })
+    });
+
+    describe('titleCase functionality', () => {
+
+        it('should return a string', ()=>{
+            let value = chance.sentence()
+            let result = api.titleCase(value)
+            expect(_.isString(result)).to.be.true
+        })
+
+        it('should return a string with the first letter of each word capitalized',()=>{
+            let knowMapping = {
+                '"I am a little tea pot"': "I Am A Little Tea Pot",
+                '"sHoRt AnD sToUt"': "Short And Stout",
+                '"HERE IS MY HANDLE HERE IS MY SPOUT"': 'Here Is My Handle Here Is My Spout'
+            }
+            let providedArray = _.keys(knowMapping)
+            _.each(providedArray,(value)=>{
+                let result = api.titleCase(JSON.parse(value))
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+
+        })
+    });
+
+
+})
+

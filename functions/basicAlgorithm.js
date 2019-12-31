@@ -36,6 +36,50 @@ module.exports = {
         let endingLength = target.length
         let endingSubString = string.substring(string.length - endingLength)
         return endingSubString === target
-    }
+    },
+
+    repeatString: (string, number)=>{
+        let result = ''
+        while(number>0){
+            result = result.concat(string)
+            number -= 1
+        }
+        return result
+    },
+
+    truncateString: (string, number)=>{
+        if(string.length <= number){
+            return string
+        }
+        return string.substring(0,number) + '...'
+    },
+
+    findersKeepers: (array, func)=>{
+        let returnNumber= []
+
+        _.each(array, (value)=> {
+            if(func(value)){
+                returnNumber.push(value)
+            }
+        })
+        return returnNumber[0]
+    },
+
+    booWho: (value)=>{
+        if(typeof(value)=== 'boolean'){
+            return true
+        }
+        return false
+        // return (value === true || value === false)
+    },
+
+    titleCase: (string)=>{
+        let stringArray = string.toLowerCase().split(" ")
+        let newArray = stringArray.map(word=>word[0].toUpperCase() + word.substring(1))
+        return newArray.join(" ")
+    },
+
+
+
 
 }
