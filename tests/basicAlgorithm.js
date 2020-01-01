@@ -238,6 +238,101 @@ describe('basicAlgorithm functionality', () => {
         })
     });
 
+    describe('frankenSplice functionality', () => {
+
+        it('should copy each element of first array into second array, in order', ()=>{
+            let knowMapping = {
+                '[[1, 2, 3], [4, 5], 1]': [4, 1, 2, 3, 5],
+                '[[1, 2], ["a", "b"], 1]': ["a", 1, 2, "b"],
+                '[["claw", "tentacle"], ["head", "shoulders", "knees", "toes"], 2]': ["head", "shoulders", "claw", "tentacle", "knees", "toes"]
+            }
+
+            let providedArray = _.keys(knowMapping)
+            _.each(providedArray,(value)=>{
+                let result = api.frankenSplice(JSON.parse(value)[0],JSON.parse(value)[1],JSON.parse(value)[2])
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+        })
+    });
+
+    describe('bouncer functionality', () => {
+
+        it('should remove all falsy values from an array', ()=>{
+            let knowMapping = {
+                '[7, "ate", "", false, 9]': [7, "ate", 9],
+                '["a", "b", "c"]': ["a", "b", "c"],
+                '[false, null, 0, NaN, undefined, ""]': [],
+                '[null, NaN, 1, 2, undefined]': [1,2]
+            }
+
+            let providedArray = _.keys(knowMapping)
+            _.each(providedArray,(value)=>{
+                let result = api.bouncer(JSON.parse(value))
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+        })
+    });
+
+    describe('getIndexToIns functionality', () => {
+
+        it('should return a number',()=>{
+            let knowArray = [10, 20, 30, 40, 50]
+            let randomNumber = chance.integer()
+            let result = api.getIndexToIns(knowArray,randomNumber)
+            expect(_.isNumber(result)).to.be.true
+        })
+
+        it('should return the lowest index when a value is inserted into an array after it is sorted',()=>{
+            let knowMapping = {
+                '[[10, 20, 30, 40, 50], 35]': 3,
+                '[[10, 20, 30, 40, 50], 30]': 2,
+                '[[2, 5, 10], 15]': 3,
+                '[[], 1]': 0
+            }
+
+            let providedArray = _.keys(knowMapping)
+            _.each(providedArray,(value)=>{
+                let result = api.getIndexToIns(JSON.parse(value)[0], JSON.parse(value)[1])
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+        })
+    });
+
+    describe('mutation functionality', () => {
+
+        it('should return true if the first string in the array consists all the elements of second string',()=>{
+            let knowMapping ={
+                '["hello", "hey"]': false,
+                '["hello", "Hello"]': true,
+                '["Alien", "line"]': true,
+                '["ate", "date"]': false
+            }
+
+            let providedArray = _.keys(knowMapping)
+                _.each(providedArray, (value)=>{
+                    let result = api.mutation(JSON.parse(value)[0], JSON.parse(value)[1])
+                    expect(result).to.deep.equal(knowMapping[value])
+                })
+        })
+    });
+
+    describe('chunkArrayInGroups', () => {
+
+        it('should split the array into several sub array of a given length',()=>{
+            let knowMapping = {
+                '[["a", "b", "c", "d"], 2]': [["a", "b"], ["c", "d"]],
+                '[[0, 1, 2, 3, 4, 5], 3]': [[0, 1, 2], [3, 4, 5]],
+                '[[0, 1, 2, 3, 4, 5], 4]': [[0, 1, 2, 3], [4, 5]]
+            }
+
+            let providedArray = _.keys(knowMapping)
+            _.each(providedArray,(value)=>{
+                let result = api.chunkArrayInGroups(JSON.parse(value)[0], JSON.parse(value)[1])
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+        })
+    });
+
 
 })
 

@@ -79,7 +79,52 @@ module.exports = {
         return newArray.join(" ")
     },
 
+    frankenSplice: (arr1,arr2,n)=>{
+        return arr2.slice(0,n).concat(arr1).concat(arr2.slice(n))
+    },
 
+    bouncer: (arr)=>{
+        let newArr = []
+        arr.map( item => {
+            if(item){
+                newArr.push(item)
+            }
+            })
+        return newArr
+    },
+
+    getIndexToIns: (arr, num)=>{
+        let newArray = []
+        let sortedArray = arr.sort()
+        sortedArray.map(currentNumber=>{
+            if(num-currentNumber>0){
+                newArray.push(currentNumber)
+            }
+        })
+        return newArray.length
+    },
+
+    mutation: (arr)=>{
+        let wholeArray = arr[0].toLowerCase().split('')
+        let partArray = arr[1].toLowerCase().split('')
+        _.each( partArray,(letter)=>{
+            if(wholeArray.includes(letter)){
+                return false
+            }
+        })
+        return true
+    },
+
+    chunkArrayInGroups: (arr, size)=>{
+        let result = []
+
+        for(let i = 0; i<arr.length; i+size){
+            result.push(arr.splice(0,size))
+        }
+
+        return result
+
+    }
 
 
 }
