@@ -210,20 +210,72 @@ describe('intermediateAlgorithm functionality', () => {
 
     describe('sumFibs  functionality', () => {
 
-        it('should ', ()=>{
+        it('should return the sum of all odd Fibonacci numbers that are less or equal to a given number', ()=>{
             let knowMapping = {
-                "Dolce & Gabbana": 'Dolce &amp; Gabbana',
-                "<>": '&lt;&gt;',
-                "Hamburgers < Pizza < Tacos": 'Hamburgers &lt; Pizza &lt; Tacos'
+                "1000": 1785,
+                "4000000": 4613732,
+                "75025": 135721
             }
             let providedArray = _.keys(knowMapping)
             console.log(providedArray)
             _.each(providedArray, (value)=>{
                 console.log(value)
-                let result = api.convertHTML(value)
+                let result = api.sumFibs(value)
                 expect(result).to.deep.equal(knowMapping[value])
             })
         })
     })
 
+    describe('sumPrimes  functionality', () => {
+
+        it('should return the sum of prime numbers that are less or equal than a given integer', ()=>{
+            let knowMapping = {
+                "10": 17,
+                "977": 73156
+            }
+            let providedArray = _.keys(knowMapping)
+            console.log(providedArray)
+            _.each(providedArray, (value)=>{
+                console.log(value)
+                let result = api.sumPrimes(value)
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+        })
+    })
+
+    describe('smallestCommons  functionality', () => {
+
+        it('should return the smallest common multiple of the provided parameters and the numbers between them', ()=>{
+            let knowMapping = {
+                "[1, 5]": 60,
+                "[5, 1]": 60,
+                "[23, 18]": 6056820
+            }
+            let providedArray = _.keys(knowMapping)
+            console.log(providedArray)
+            _.each(providedArray, (value)=>{
+                console.log(value)
+                let result = api.smallestCommons(JSON.parse(value))
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+        })
+    })
+
+    describe('dropElements  functionality', () => {
+
+        it('should return a new array with elements from first parameter that pass the function parameter', ()=>{
+            let knowMapping = {
+                "[[1, 2, 3, 4], function(n) {return n >= 3;}]": [3, 4],
+                "[[1, 2, 3, 9, 2], function(n) {return n > 2;}]": [3, 9, 2],
+                "[23, 18]": 6056820
+            }
+            let providedArray = _.keys(knowMapping)
+            console.log(providedArray)
+            _.each(providedArray, (value)=>{
+                console.log(value)
+                let result = api.dropElements(JSON.parse(value)[0], JSON.parse(value)[1])
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+        })
+    })
 });

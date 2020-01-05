@@ -132,8 +132,63 @@ module.exports = {
      },
 
     sumFibs: (num)=>{
+        if(num < 0) return -1
+        if(num === 0 || num === 1) return 1
+
+        let fibArray = [1,1]
+        let nextFib
+
+        while( (nextFib = fibArray[0] + fibArray[1]) <= num){
+            fibArray.unshift(nextFib)
+        }
+        return fibArray.filter( item => item % 2 !=0).reduce((total,current)=>total + current)
+
+    },
+
+    sumPrimes: (num)=>{
+
+        if(num === 1) return 0
+
+        let primeArray = []
+
+        let isPrime = (number)=>{
+            for(let i=2; i<=number; i++){
+                if(number % i === 0 && number !=i){
+                    return false
+                }
+            }
+            return true
+        }
+
+        for(let i =2; i <=num; i++){
+            if (isPrime(i)){
+                primeArray.push(i)
+            }
+        }
+
+        return _.reduce(primeArray, (total,current)=>total + current)
+    },
+
+    smallestCommons: (arr)=>{
+        let max = Math.max(...arr)
+        let min = Math.min(...arr)
+        let result = max
+
+        for (let i = max; i>=min; i--){
+            if(result % i !== 0){
+                result += max
+                i = max
+            }
+        }
+        return result
+    },
+
+    dropElements: (arr,func)=>{
+
 
     }
+
+
 
 
 }
