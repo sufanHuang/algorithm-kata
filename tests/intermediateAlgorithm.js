@@ -267,13 +267,63 @@ describe('intermediateAlgorithm functionality', () => {
             let knowMapping = {
                 "[[1, 2, 3, 4], function(n) {return n >= 3;}]": [3, 4],
                 "[[1, 2, 3, 9, 2], function(n) {return n > 2;}]": [3, 9, 2],
-                "[23, 18]": 6056820
             }
             let providedArray = _.keys(knowMapping)
             console.log(providedArray)
             _.each(providedArray, (value)=>{
                 console.log(value)
                 let result = api.dropElements(JSON.parse(value)[0], JSON.parse(value)[1])
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+        })
+    })
+
+    describe('streamrollArray  functionality', () => {
+
+        it('should flatten a nested array', ()=>{
+            let knowMapping = {
+                "[1, [2], [3, [[4]]]]": [1, 2, 3, 4],
+                "[1, [], [3, [[4]]]]": [1, 3, 4]
+            }
+            let providedArray = _.keys(knowMapping)
+            console.log(providedArray)
+            _.each(providedArray, (value)=>{
+                console.log(value)
+                let result = api.steamrollArray(JSON.parse(value))
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+        })
+    })
+
+    describe('binaryAgent  functionality', () => {
+
+        it('should convert binary to corresponding letter', ()=>{
+            let knowMapping = {
+                "01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111": "Aren't bonfires fun!?",
+                "01001001 00100000 01101100 01101111 01110110 01100101 00100000 01000110 01110010 01100101 01100101 01000011 01101111 01100100 01100101 01000011 01100001 01101101 01110000 00100001": "I love FreeCodeCamp!"
+            }
+            let providedArray = _.keys(knowMapping)
+            console.log(providedArray)
+            _.each(providedArray, (value)=>{
+                console.log(value)
+                let result = api.binaryAgent(value)
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+        })
+    })
+
+    describe('truthCheck  functionality', () => {
+
+        it('should check if the predicate is truthy on all elements of a collection', ()=>{
+            let knowMapping = {
+                '[[{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy", "sex": "male"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex"]': true,
+                '[[{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex"]': false
+            }
+            let providedArray = _.keys(knowMapping)
+            console.log(providedArray)
+            _.each(providedArray, (value)=>{
+                console.log(value)
+                let result = api.truthCheck(JSON.parse(value)[0], JSON.parse(value)[1])
                 expect(result).to.deep.equal(knowMapping[value])
             })
         })

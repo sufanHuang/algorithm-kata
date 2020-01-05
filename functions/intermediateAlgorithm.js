@@ -184,10 +184,30 @@ module.exports = {
     },
 
     dropElements: (arr,func)=>{
+        let count = 0
+        while(!func(arr[count])){
+            arr.shift()
+        }
+        return arr
+    },
 
+    steamrollArray: (arr)=>{
+       return  _.flattenDeep(arr)
+    },
 
+    binaryAgent: (str)=>{
+        //charCodeAt() string to UTF code
+        //fromCharCode() UTF code to string
+        // binary to UTF?
+        // parseInt binary to decimal
+        let strArray = str.split(" ")
+        let convertedArray = strArray.map(item=>String.fromCharCode(parseInt(item,2)))
+        return convertedArray.join('')
+    },
+
+    truthCheck: (collection, predicate)=>{
+        return collection.every(item=>item[predicate])
     }
-
 
 
 
