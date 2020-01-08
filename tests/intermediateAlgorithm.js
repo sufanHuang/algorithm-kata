@@ -35,9 +35,7 @@ describe('intermediateAlgorithm functionality', () => {
                 '[[], ["snuffleupagus", "cookie monster", "elmo"]]': ["snuffleupagus", "cookie monster", "elmo"]
             }
             let providedArray = _.keys(knowMapping)
-            console.log(providedArray)
             _.each(providedArray,(value)=>{
-                console.log(value)
                 let result = api.diffArray(JSON.parse(value)[0],JSON.parse(value)[1])
                 expect(result).to.deep.equal(knowMapping[value])
             })
@@ -75,10 +73,8 @@ describe('intermediateAlgorithm functionality', () => {
                 '[[{"a": 1, "b": 2, "c": 3}], {"a": 1, "b": 9999, "c": 3}]': []
             }
             let providedArray = _.keys(knowMapping)
-            console.log(providedArray)
             _.each(providedArray, (value)=>{
-                console.log(value)
-                let result = api.whatIsInAName(value[0],value[1])
+                let result = api.whatIsInAName(JSON.parse(value)[0],JSON.parse(value)[1])
                 expect(result).to.deep.equal(knowMapping[value])
             })
         })
@@ -92,9 +88,7 @@ describe('intermediateAlgorithm functionality', () => {
                 "thisIsSpinalTap": "this-is-spinal-tap"
             }
             let providedArray = _.keys(knowMapping)
-            console.log(providedArray)
             _.each(providedArray, (value)=>{
-                console.log(value)
                 let result = api.spinalCase(value)
                 expect(result).to.deep.equal(knowMapping[value])
             })
@@ -110,9 +104,7 @@ describe('intermediateAlgorithm functionality', () => {
                 'rhythm': "rhythmay"
             }
             let providedArray = _.keys(knowMapping)
-            console.log(providedArray)
             _.each(providedArray, (value)=>{
-                console.log(value)
                 let result = api.translatePigLatin(value)
                 expect(result).to.deep.equal(knowMapping[value])
             })
@@ -128,9 +120,7 @@ describe('intermediateAlgorithm functionality', () => {
 
             }
             let providedArray = _.keys(knowMapping)
-            console.log(providedArray)
             _.each(providedArray, (value)=>{
-                console.log(value)
                 let result = api.myReplace(JSON.parse(value)[0],JSON.parse(value)[1], JSON.parse(value)[2])
                 expect(result).to.deep.equal(knowMapping[value])
             })
@@ -146,9 +136,7 @@ describe('intermediateAlgorithm functionality', () => {
 
             }
             let providedArray = _.keys(knowMapping)
-            console.log(providedArray)
             _.each(providedArray, (value)=>{
-                console.log(value)
                 let result = api.pairElement(value)
                 expect(result).to.deep.equal(knowMapping[value])
             })
@@ -164,9 +152,7 @@ describe('intermediateAlgorithm functionality', () => {
 
             }
             let providedArray = _.keys(knowMapping)
-            console.log(providedArray)
             _.each(providedArray, (value)=>{
-                console.log(value)
                 let result = api.fearNotLetter(value)
                 expect(result).to.deep.equal(knowMapping[value])
             })
@@ -181,9 +167,7 @@ describe('intermediateAlgorithm functionality', () => {
                 "[[1, 2, 3], [5, 2, 1]]": [1, 2, 3, 5]
             }
             let providedArray = _.keys(knowMapping)
-            console.log(providedArray)
             _.each(providedArray, (value)=>{
-                console.log(value)
                 let result = api.unitedUnique(JSON.parse(value))
                 expect(result).to.deep.equal(knowMapping[value])
             })
@@ -199,9 +183,7 @@ describe('intermediateAlgorithm functionality', () => {
                 "Hamburgers < Pizza < Tacos": 'Hamburgers &lt; Pizza &lt; Tacos'
             }
             let providedArray = _.keys(knowMapping)
-            console.log(providedArray)
             _.each(providedArray, (value)=>{
-                console.log(value)
                 let result = api.convertHTML(value)
                 expect(result).to.deep.equal(knowMapping[value])
             })
@@ -217,9 +199,7 @@ describe('intermediateAlgorithm functionality', () => {
                 "75025": 135721
             }
             let providedArray = _.keys(knowMapping)
-            console.log(providedArray)
             _.each(providedArray, (value)=>{
-                console.log(value)
                 let result = api.sumFibs(value)
                 expect(result).to.deep.equal(knowMapping[value])
             })
@@ -234,9 +214,7 @@ describe('intermediateAlgorithm functionality', () => {
                 "977": 73156
             }
             let providedArray = _.keys(knowMapping)
-            console.log(providedArray)
             _.each(providedArray, (value)=>{
-                console.log(value)
                 let result = api.sumPrimes(value)
                 expect(result).to.deep.equal(knowMapping[value])
             })
@@ -252,9 +230,7 @@ describe('intermediateAlgorithm functionality', () => {
                 "[23, 18]": 6056820
             }
             let providedArray = _.keys(knowMapping)
-            console.log(providedArray)
             _.each(providedArray, (value)=>{
-                console.log(value)
                 let result = api.smallestCommons(JSON.parse(value))
                 expect(result).to.deep.equal(knowMapping[value])
             })
@@ -269,9 +245,7 @@ describe('intermediateAlgorithm functionality', () => {
                 "[[1, 2, 3, 9, 2], function(n) {return n > 2;}]": [3, 9, 2],
             }
             let providedArray = _.keys(knowMapping)
-            console.log(providedArray)
             _.each(providedArray, (value)=>{
-                console.log(value)
                 let result = api.dropElements(JSON.parse(value)[0], JSON.parse(value)[1])
                 expect(result).to.deep.equal(knowMapping[value])
             })
@@ -286,9 +260,7 @@ describe('intermediateAlgorithm functionality', () => {
                 "[1, [], [3, [[4]]]]": [1, 3, 4]
             }
             let providedArray = _.keys(knowMapping)
-            console.log(providedArray)
             _.each(providedArray, (value)=>{
-                console.log(value)
                 let result = api.steamrollArray(JSON.parse(value))
                 expect(result).to.deep.equal(knowMapping[value])
             })
@@ -303,9 +275,7 @@ describe('intermediateAlgorithm functionality', () => {
                 "01001001 00100000 01101100 01101111 01110110 01100101 00100000 01000110 01110010 01100101 01100101 01000011 01101111 01100100 01100101 01000011 01100001 01101101 01110000 00100001": "I love FreeCodeCamp!"
             }
             let providedArray = _.keys(knowMapping)
-            console.log(providedArray)
             _.each(providedArray, (value)=>{
-                console.log(value)
                 let result = api.binaryAgent(value)
                 expect(result).to.deep.equal(knowMapping[value])
             })
@@ -320,12 +290,182 @@ describe('intermediateAlgorithm functionality', () => {
                 '[[{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex"]': false
             }
             let providedArray = _.keys(knowMapping)
-            console.log(providedArray)
             _.each(providedArray, (value)=>{
-                console.log(value)
                 let result = api.truthCheck(JSON.parse(value)[0], JSON.parse(value)[1])
                 expect(result).to.deep.equal(knowMapping[value])
             })
         })
     })
-});
+
+    describe('addTogether  functionality', () => {
+
+        it('should return the sum of the arguments', ()=>{
+            let knowMapping = {
+                '[2,3]': 5,
+                '[2,"3"]': undefined,
+            }
+            let providedArray = _.keys(knowMapping)
+            _.each(providedArray, (value)=>{
+                let result = api.addTogether(JSON.parse(value)[0], JSON.parse(value)[1])
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+        })
+
+        it('should return undefined with one argument only', ()=>{
+            let knowMapping = {
+                "http://bit.ly/IqT6zt": undefined,
+                "2": undefined
+            }
+            let providedArray = _.keys(knowMapping)
+            _.each(providedArray, (value)=>{
+                let result = api.addTogether(value)
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+        })
+
+       /* it('should return a function that expects one argument and returns the sum', ()=>{
+            let knowMapping = {
+                ""
+            }
+        }) */
+    })
+
+    describe('orbitalPeriod functionality', () => {
+
+        it("should return a new array that transforms the elements' average altitude into orbital periods", ()=>{
+            let knowMapping = {
+                '[{name : "sputnik", avgAlt : 35873.5553}]': [{name: "sputnik", orbitalPeriod: 86400}],
+                '[{name: "iss", avgAlt: 413.6}, {name: "hubble", avgAlt: 556.7}, {name: "moon", avgAlt: 378632.553}]': [{name : "iss", orbitalPeriod: 5557}, {name: "hubble", orbitalPeriod: 5734}, {name: "moon", orbitalPeriod: 2377399}]
+            }
+            let providedArray = _.keys(knowMapping)
+            _.each(providedArray, (value)=>{
+                console.log(value)
+                let result = api.orbitalPeriod(JSON.parse(value))
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+        })
+    });
+
+    describe('palindrom functionality', () => {
+
+        it("should return a new array that transforms the elements' average altitude into orbital periods", ()=>{
+            let knowMapping = {
+                "eye": true,
+                "_eye": true,
+                "almostomla": false,
+                "five|\_/|four": false
+
+            }
+            let providedArray = _.keys(knowMapping)
+            _.each(providedArray, (value)=>{
+                console.log(value)
+                let result = api.palindrome(value)
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+        })
+    });
+
+    describe('canMakeWord functionality', () => {
+
+        it("should check if there is enough letters to make a word", ()=>{
+            let knowMapping = [
+                {
+                    tiles: ['a', 'z', 'o', 'b', 't', '?'],
+                    word: 'boat',
+                    result: true
+                },
+                {
+                    tiles: ['v', '?'],
+                    word: 'beef',
+                    result: false
+                },
+                {
+                    tiles: ['v', '?','?','?',"?"],
+                    word: 'beef',
+                    result: true
+                },
+                {
+                    tiles: ['a', 'f', 'e', 'h', 'b'],
+                    word: 'beef',
+                    result: false
+                }
+            ]
+            _.each(knowMapping, (value)=>{
+                let result = api.canMakeWord(value.tiles, value.word)
+                expect(result).to.deep.equal(value.result)
+            })
+        })
+    });
+
+    describe('convertToRoman functionality', () => {
+
+        it('should convert the given number into a roman numeral', ()=>{
+            let knowMapping = {
+                '2': "II",
+                '16': "XVI",
+                '500': 'D',
+                '891': "DCCCXCI"
+            }
+            let keysArray = _.keys(knowMapping)
+            _.each(keysArray, (value)=>{
+                let result = api.convertToRoman(value)
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+
+        })
+    });
+
+    describe('rot13 functionality', () => {
+
+        it('should return a decoded string where the values of the letters are shifted 13 places', ()=>{
+            let knowMapping = {
+                "SERR PBQR PNZC": "FREE CODE CAMP",
+                "SERR CVMMN!": "FREE PIZZA!",
+                "SERR YBIR?": "FREE LOVE?",
+            }
+            let keysArray = _.keys(knowMapping)
+            _.each(keysArray, (value)=>{
+                let result = api.rot13(value)
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+
+        })
+    });
+
+    describe('telephoneCheck functionality', () => {
+
+        it('should return true if the passed string looks like a valid US phone number', ()=>{
+            let knowMapping = {
+                "1 555-555-5555": true,
+                "1 (555) 555-5555": true,
+                "5555555555": true,
+                "555-5555": false
+            }
+            let keysArray = _.keys(knowMapping)
+            _.each(keysArray, (value)=>{
+                let result = api.telephoneCheck(value)
+                expect(result).to.deep.equal(knowMapping[value])
+            })
+
+        })
+    });
+
+    describe('checkCashRegister functionality', () => {
+
+        it('should return an object with cash register status and chang amount', ()=>{
+            let knowMapping = [
+                {
+                    price: 19.5,
+                    cash: 20,
+                    caseInDrawer: [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]],
+                    result: {status: "OPEN", change: [["QUARTER", 0.5]]}
+                }
+            ]
+            _.each(knowMapping, (value)=>{
+                let result = api.checkCashRegister(value.price, value.cash, value.cashInDrawer)
+                expect(result).to.deep.equal(value.result)
+            })
+        })
+    });
+
+})

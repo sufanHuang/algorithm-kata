@@ -207,13 +207,101 @@ module.exports = {
 
     truthCheck: (collection, predicate)=>{
         return collection.every(item=>item[predicate])
+    },
+
+    addTogether: (a,b)=>{
+        if (!_.isNumber(a)||!_.isNumber(b)){
+            return undefined
+        }
+        if(b){
+            return a+b
+        }
+
+        return c => addTogether(a,c)
+    },
+
+    orbitalPeriod: (arr)=>{
+        let GM = 398600.4418
+        let earthRadius = 6367.4447
+
+        return arr.map((item) => {
+           return {
+               name: item.name,
+               orbitalPeriod: Math.round((2 * Math.PI) * Math.sqrt(Math.pow(earthRadius + item.avgAlt, 3) / GM))
+           }
+        })
+    },
+
+    palindrome: (str)=>{
+        let strArray = str.toLowerCase().split('').filter(letter=>letter.match(/[a-z]/))
+        let reversedArray = [...strArray].reverse()
+        return _.isEqual(strArray, reversedArray)
+    },
+
+    canMakeWord: (tiles, word)=>{
+        let wordArray = word.split('')
+        let tilesLetters = tiles.slice()
+        let doWork = (letters, currentLetter) => {
+            if(tilesLetters.includes(currentLetter)){
+                tilesLetters.splice(tilesLetters.indexOf(currentLetter),1)
+            }else{
+                letters.push(currentLetter)
+            }
+
+            return letters
+        }
+
+        let filteredLetters = _.reduce(wordArray, doWork, [])
+        let numberOfWildCards = tilesLetters.filter(letter=> letter ==="?").length
+
+        if(filteredLetters.length = 0 || (filteredLetters.length <= numberOfWildCards )){
+            return true
+        }
+        return false
+    },
+
+    convertToRoman: (num)=>{
+        let knowPairs = { M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1 }
+        let result = ''
+        for( let key in knowPairs){
+            while (num >= knowPairs[key]){
+                result += key
+                num -= knowPairs[key]
+            }
+        }
+        return result
+    },
+
+    rot13: (str)=>{
+     return str.replace(/[A-Z]/g, letter=>
+         String.fromCharCode((letter.charCodeAt(0)%26) + 65)
+     )},
+
+    telephoneCheck: (str)=>{
+        let pattern = /^1? ?(( ?\d{3}[- ]*)|(\( ?\d{3}[- ]*\) *))\d{3}[- ]?\d{4}$/
+        return pattern.test(str)
+
+    },
+
+    checkCashRegister: (price, cash, cashInDrawer)=>{
+        let knowPairs = { 'ONE HUNDRED': 100, 'TWENTY': 20, 'TEN': 10, 'FIVE': 5, 'DOLLAR': 1,
+                           'QUARTER': 0.25, 'DIME':  0.1, 'NICKEL': 0.05, 'PENNY': 0.01 }
+        let changeTotal = cash - price
+        let change = []
+
+        for ( let key in knowPairs){
+            while (changeTotal >= knowPairs[key]){
+                change.push([key, ])
+
+            }
+        }
+
+
+
     }
 
 
-
 }
-
-
 
 
 
