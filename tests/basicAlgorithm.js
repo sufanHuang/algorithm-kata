@@ -113,16 +113,25 @@ describe('basicAlgorithm functionality', () => {
     describe('largestOfFour functionality', () => {
 
         it('should return an array consisting of the largest number from each provided subarray', () => {
-            let knownMapping = {
-                '[[13, 27, 18, 26], [4, 5, 1, 3], [32, 35, 37, 39], [1000, 1001, 857, 1]]': [27, 5, 39, 1001],
-                '[[4, 9, 1, 3], [13, 35, 18, 26], [32, 35, 97, 39], [1000000, 1001, 857, 1]]': [9, 35, 97, 1000000],
-                '[[17, 23, 25, 12], [25, 7, 34, 48], [4, -10, 18, 21], [-72, -3, -17, -10]]': [25, 48, 21, -3]
-            }
 
-            let providedArray = _.keys(knownMapping)
-            _.each(providedArray, (value) => {
-                let result = api.largestOfFour(JSON.parse(value))
-                expect(result).to.deep.equal(knownMapping[value])
+            let knowMapping = [
+                {
+                    arrayOfFour: [[13, 27, 18, 26], [4, 5, 1, 3], [32, 35, 37, 39], [1000, 1001, 857, 1]],
+                    result: [27, 5, 39, 1001]
+                },
+                {
+                    arrayOfFour: [[4, 9, 1, 3], [13, 35, 18, 26], [32, 35, 97, 39], [1000000, 1001, 857, 1]],
+                    result: [9, 35, 97, 1000000]
+                },
+                {
+                    arrayOfFour: [[17, 23, 25, 12], [25, 7, 34, 48], [4, -10, 18, 21], [-72, -3, -17, -10]],
+                    result: [25, 48, 21, -3]
+                }
+            ]
+
+            _.each(knowMapping, (value) => {
+                let result = api.largestOfFour(value.arrayOfFour)
+                expect(result).to.deep.equal(value.result)
             })
         })
     });
@@ -130,18 +139,32 @@ describe('basicAlgorithm functionality', () => {
     describe('confirmEnding functionality', () => {
 
         it( 'should check if a string ends with the given target string', ()=>{
-            let knowMapping = {
-                '["Bastian", "n"]': true,
-                '["Congratulation", "on"]': true,
-                '["Connor", "n"]': false,
-                '["Walking on water and developing software from a specification are easy if both are frozen", "specification"]': false,
-                '["Open sesame", "pen"]': false,
-            }
+            let knowMapping = [
+                {
+                    string: 'Bastian',
+                    target: 'n',
+                    result: true
+                },
+                {
+                    string: 'Congratulation',
+                    target: 'on',
+                    result: true
+                },
+                {
+                    string: '"Walking on water and developing software from a specification are easy if both are frozen", "specification"',
+                    target: [],
+                    result: false
+                },
+                {
+                    string: 'Open sesame',
+                    target: 'pen',
+                    result: false
+                }
+            ]
 
-            let providedArray = _.keys(knowMapping)
-            _.each(providedArray, (value)=>{
-                let result = api.confirmEnding(JSON.parse(value)[0],JSON.parse(value)[1])
-                expect(result).to.deep.equal(knowMapping[value])
+            _.each(knowMapping, (value)=>{
+                let result = api.confirmEnding(value.string, value.target)
+                expect(result).to.deep.equal(value.result)
             })
         })
     });
@@ -149,16 +172,27 @@ describe('basicAlgorithm functionality', () => {
     describe('repeatString functionality', () => {
 
         it( 'should repeat a given string for a number of times', ()=>{
-            let knowMapping = {
-                '["*", 3]': '***',
-                '["abc", 4]': 'abcabcabcabc',
-                '["abc", -2]': ''
-            }
+            let knowMapping = [
+                {
+                    string: '*',
+                    number: 3,
+                    result: '***'
+                },
+                {
+                    string: 'abc',
+                    number: 4,
+                    result: 'abcabcabcabc'
+                },
+                {
+                    string: 'abc',
+                    number: -2,
+                    result: ''
+                }
+            ]
 
-            let providedArray = _.keys(knowMapping)
-            _.each(providedArray, (value)=>{
-                let result = api.repeatString(JSON.parse(value)[0],JSON.parse(value)[1])
-                expect(result).to.deep.equal(knowMapping[value])
+            _.each(knowMapping, (value)=>{
+                let result = api.repeatString(value.string, value.number)
+                expect(result).to.deep.equal(value.result)
             })
         })
     });
@@ -166,16 +200,27 @@ describe('basicAlgorithm functionality', () => {
     describe('truncateString functionality', () => {
 
         it( 'should truncate a string if it is longer than the given length', ()=>{
-            let knowMapping = {
-                '["A-tisket a-tasket A green and yellow basket", 8]': "A-tisket...",
-                '["A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length]': "A-tisket a-tasket A green and yellow basket",
-                '["A-", 1]': 'A...'
-            }
+            let knowMapping = [
+                {
+                    string: "A-tisket a-tasket A green and yellow basket",
+                    number: 8,
+                    result: "A-tisket..."
+                },
+                {
+                    string: "A-tisket a-tasket A green and yellow basket",
+                    number: "A-tisket a-tasket A green and yellow basket".length,
+                    result: "A-tisket a-tasket A green and yellow basket"
+                },
+                {
+                    string: "A-",
+                    number: 1,
+                    result: 'A...'
+                }
+            ]
 
-            let providedArray = _.keys(knowMapping)
-            _.each(providedArray, (value)=>{
-                let result = api.truncateString(JSON.parse(value)[0],JSON.parse(value)[1])
-                expect(result).to.deep.equal(knowMapping[value])
+            _.each(knowMapping, (value)=>{
+                let result = api.truncateString(value.string, value.number)
+                expect(result).to.deep.equal(value.result)
             })
         })
     });
@@ -183,16 +228,22 @@ describe('basicAlgorithm functionality', () => {
     describe('finderKeepers functionality', () => {
 
         it( 'should look through an array and returns the first element that passes a truth test', ()=>{
-            let knowMapping = {
-                '[[1, 3, 5, 8, 9, 10], function(num) { return num % 2 === 0]': 8,
-                '[[1, 3, 5, 9], function(num) { return num % 2 === 0]': undefined
-            }
+            let knowMapping = [
+                {
+                    array: [1, 3, 5, 8, 9, 10],
+                    func: function(num) { return num % 2 === 0},
+                    result: 8
+                },
+                {
+                    array: [1, 3, 5, 9],
+                    func: function(num) { return num % 2 === 0}
+                }
 
-            let providedArray = _.keys(knowMapping)
-            _.each(providedArray, (value)=>{
-                let result = api.findersKeepers(JSON.parse(value)[0], JSON.parse(value)[1])
-                expect(result).to.deep.equal(knowMapping[value])
+            ]
 
+            _.each(knowMapping, (value)=>{
+                let result = api.findersKeepers(value.array, value.func)
+                expect(result).to.deep.equal(value.result)
             })
         })
     });
@@ -241,16 +292,30 @@ describe('basicAlgorithm functionality', () => {
     describe('frankenSplice functionality', () => {
 
         it('should copy each element of first array into second array, in order', ()=>{
-            let knowMapping = {
-                '[[1, 2, 3], [4, 5], 1]': [4, 1, 2, 3, 5],
-                '[[1, 2], ["a", "b"], 1]': ["a", 1, 2, "b"],
-                '[["claw", "tentacle"], ["head", "shoulders", "knees", "toes"], 2]': ["head", "shoulders", "claw", "tentacle", "knees", "toes"]
-            }
+            let knowMapping = [
+                {
+                    arr1: [1,2,3],
+                    arr2: [4,5],
+                    number: 1,
+                    result: [4,1,2,3,5]
+                },
+                {
+                    arr1: [1,2],
+                    arr2: ['a', 'b'],
+                    number: 1,
+                    result: ['a',1,2,'b']
+                },
+                {
+                    arr1: ["claw", "tentacle"],
+                    arr2: ["head", "shoulders", "knees", "toes"],
+                    number: 2,
+                    result: ["head", "shoulders","claw", "tentacle", "knees", "toes"]
+                }
+            ]
 
-            let providedArray = _.keys(knowMapping)
-            _.each(providedArray,(value)=>{
-                let result = api.frankenSplice(JSON.parse(value)[0],JSON.parse(value)[1],JSON.parse(value)[2])
-                expect(result).to.deep.equal(knowMapping[value])
+           _.each(knowMapping,(value)=>{
+                let result = api.frankenSplice(value.arr1, value.arr2, value.number)
+                expect(result).to.deep.equal(value.result)
             })
         })
     });
@@ -258,17 +323,28 @@ describe('basicAlgorithm functionality', () => {
     describe('bouncer functionality', () => {
 
         it('should remove all falsy values from an array', ()=>{
-            let knowMapping = {
-                '[7, "ate", "", false, 9]': [7, "ate", 9],
-                '["a", "b", "c"]': ["a", "b", "c"],
-                '[false, null, 0, NaN, undefined, ""]': [],
-                '[null, NaN, 1, 2, undefined]': [1,2]
-            }
+            let knowMapping = [
+                {
+                    arr: [7, "ate", "", false, 9],
+                    result: [7, "ate", 9]
+                },
+                {
+                    arr: ["a", "b", "c"],
+                    result: ["a", "b", "c"]
+                },
+                {
+                    arr: [false, null, 0, NaN, undefined, ""],
+                    result: []
+                },
+                {
+                    arr: [null, NaN, 1, 2, undefined],
+                    result: [1,2]
+                }
+            ]
 
-            let providedArray = _.keys(knowMapping)
-            _.each(providedArray,(value)=>{
-                let result = api.bouncer(JSON.parse(value))
-                expect(result).to.deep.equal(knowMapping[value])
+            _.each(knowMapping,(value)=>{
+                let result = api.bouncer(value.arr)
+                expect(result).to.deep.equal(value.result)
             })
         })
     });
@@ -283,17 +359,29 @@ describe('basicAlgorithm functionality', () => {
         })
 
         it('should return the lowest index when a value is inserted into an array after it is sorted',()=>{
-            let knowMapping = {
-                '[[10, 20, 30, 40, 50], 35]': 3,
-                '[[10, 20, 30, 40, 50], 30]': 2,
-                '[[2, 5, 10], 15]': 3,
-                '[[], 1]': 0
-            }
 
-            let providedArray = _.keys(knowMapping)
-            _.each(providedArray,(value)=>{
-                let result = api.getIndexToIns(JSON.parse(value)[0], JSON.parse(value)[1])
-                expect(result).to.deep.equal(knowMapping[value])
+            let knowMapping = [
+                {
+                    arr: [10, 20, 30, 40, 50],
+                    number: 35,
+                    result: 3
+                },
+                {
+                    arr: [10, 20, 30, 40, 50],
+                    number: 30,
+                    result: 2
+                },
+                {
+                    arr: [2, 5, 10],
+                    number: 15,
+                    result: 3
+                }
+
+            ]
+
+            _.each(knowMapping,(value)=>{
+                let result = api.getIndexToIns(value.arr, value.number)
+                expect(result).to.deep.equal(value.result)
             })
         })
     });
@@ -301,34 +389,54 @@ describe('basicAlgorithm functionality', () => {
     describe('mutation functionality', () => {
 
         it('should return true if the first string in the array consists all the elements of second string',()=>{
-            let knowMapping ={
-                '["hello", "hey"]': false,
-                '["hello", "Hello"]': true,
-                '["Alien", "line"]': true,
-                '["ate", "date"]': false
-            }
 
-            let providedArray = _.keys(knowMapping)
-                _.each(providedArray, (value)=>{
-                    let result = api.mutation(JSON.parse(value)[0], JSON.parse(value)[1])
-                    expect(result).to.deep.equal(knowMapping[value])
-                })
+            let knowMapping = [
+                {
+                    arr: ["hello", "hey"],
+                    result: false
+                },
+                {
+                    arr: ["hello", "Hello"],
+                    result: true
+                },
+                {
+                    arr: ["Alien", "line"],
+                    result: true
+                }
+            ]
+
+            _.each(knowMapping, (value)=>{
+                let result = api.mutation(value.arr)
+                expect(result).to.deep.equal(value.result)
+            })
         })
     });
 
     describe('chunkArrayInGroups', () => {
 
         it('should split the array into several sub array of a given length',()=>{
-            let knowMapping = {
-                '[["a", "b", "c", "d"], 2]': [["a", "b"], ["c", "d"]],
-                '[[0, 1, 2, 3, 4, 5], 3]': [[0, 1, 2], [3, 4, 5]],
-                '[[0, 1, 2, 3, 4, 5], 4]': [[0, 1, 2, 3], [4, 5]]
-            }
 
-            let providedArray = _.keys(knowMapping)
-            _.each(providedArray,(value)=>{
-                let result = api.chunkArrayInGroups(JSON.parse(value)[0], JSON.parse(value)[1])
-                expect(result).to.deep.equal(knowMapping[value])
+            let knowMapping = [
+                {
+                    arr: ["a", "b", "c", "d"],
+                    size: 2,
+                    result: [["a", "b"], ["c", "d"]]
+                },
+                {
+                    arr: [0, 1, 2, 3, 4, 5],
+                    size: 3,
+                    result: [[0, 1, 2], [3, 4, 5]]
+                },
+                {
+                    arr: [0, 1, 2, 3, 4, 5],
+                    size: 4,
+                    result: [[0, 1, 2, 3], [4, 5]]
+                }
+            ]
+
+            _.each(knowMapping,(value)=>{
+                let result = api.chunkArrayInGroups(value.arr, value.size)
+                expect(result).to.deep.equal(value.result)
             })
         })
     });

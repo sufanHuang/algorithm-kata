@@ -28,16 +28,31 @@ describe('intermediateAlgorithm functionality', () => {
     describe('diffArray functionality', () => {
 
         it('should return a new array consists with items that only exists in one of the arrays',()=>{
-            let knowMapping = {
-                '[[1, 2, 3, 5], [1, 2, 3, 4, 5]]': [4],
-                '[["diorite", "andesite", "grass", "dirt", "pink wool", "dead shrub"], ["diorite", "andesite", "grass", "dirt", "dead shrub"]]': ["pink wool"],
-                '[["andesite", "grass", "dirt", "dead shrub"], ["andesite", "grass", "dirt", "dead shrub"] ]': [],
-                '[[], ["snuffleupagus", "cookie monster", "elmo"]]': ["snuffleupagus", "cookie monster", "elmo"]
-            }
-            let providedArray = _.keys(knowMapping)
-            _.each(providedArray,(value)=>{
-                let result = api.diffArray(JSON.parse(value)[0],JSON.parse(value)[1])
-                expect(result).to.deep.equal(knowMapping[value])
+            let knowMapping = [
+                {
+                    arrayOne: [1, 2, 3, 5],
+                    arrayTwo: [1, 2, 3, 4, 5],
+                    result: [4]
+                },
+                {
+                    arrayOne: ["diorite", "andesite", "grass", "dirt", "pink wool", "dead shrub"],
+                    arrayTwo: ["diorite", "andesite", "grass", "dirt", "dead shrub"],
+                    result: ["pink wool"]
+                },
+                {
+                    arrayOne: ["andesite", "grass", "dirt", "dead shrub"],
+                    arrayTwo: ["andesite", "grass", "dirt", "dead shrub"],
+                    result: []
+                },
+                {
+                    arrayOne: [],
+                    arrayTwo: ["snuffleupagus", "cookie monster", "elmo"],
+                    result: ["snuffleupagus", "cookie monster", "elmo"]
+                }
+            ]
+            _.each(knowMapping,(value)=>{
+                 let result = api.diffArray(value.arrayOne, value.arrayTwo)
+                expect(result).to.deep.equal(value.result)
             })
         })
     });
@@ -67,15 +82,22 @@ describe('intermediateAlgorithm functionality', () => {
 
     describe('whatIsInAName  functionality', () => {
 
-        it('should remove items in an array that is the same value of the given arguments', ()=>{
-            let knowMapping = {
-                '[[{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" }]': [{ first: "Tybalt", last: "Capulet" }],
-                '[[{"a": 1, "b": 2, "c": 3}], {"a": 1, "b": 9999, "c": 3}]': []
-            }
-            let providedArray = _.keys(knowMapping)
-            _.each(providedArray, (value)=>{
-                let result = api.whatIsInAName(JSON.parse(value)[0],JSON.parse(value)[1])
-                expect(result).to.deep.equal(knowMapping[value])
+        it('should return items in an array that is the same value of the given arguments', ()=>{
+            let knowMapping = [
+                {
+                    givenArray: [{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }],
+                    givenObject: { last: "Capulet" },
+                    result: [{ first: "Tybalt", last: "Capulet" }]
+                },
+                {
+                    givenArray: [{"a": 1, "b": 2, "c": 3}],
+                    givenObject: {"a": 1, "b": 9999, "c": 3},
+                    result: []
+                }
+            ]
+            _.each(knowMapping, (value)=>{
+                let result = api.whatIsInAName(value.givenArray, value.givenObject)
+                expect(result).to.deep.equal(value.result)
             })
         })
     })
@@ -468,4 +490,105 @@ describe('intermediateAlgorithm functionality', () => {
         })
     });
 
+    describe('getTypeCount functionality', () => {
+
+        it('should return an array of numbers', ()=>{
+            let knowMapping = [
+                {
+                    data: [
+                        {
+                            "type": "typeA",
+                            "id": "2419781839",
+                            "description": "This Element With ID=2419781839 Is Just A Sample Object",
+                            "company": "Access Publishing Inc."
+                        },
+                        {
+                            "type": "typeB",
+                            "id": "2258712",
+                            "description": "This Element With ID=2258712 Is Just A Sample Object",
+                            "company": "Access Publishing Inc."
+                        },
+                        {
+                            "type": "typeB",
+                            "id": "2258712",
+                            "description": "This Element With ID=2258712 Is Just A Sample Object",
+                            "company": "Access Publishing Inc."
+                        }
+                    ],
+                    types: ["typeB", "typeA"],
+                    result: [2, 1]
+                }
+            ]
+            _.each(knowMapping, (value)=>{
+                let result = api.getTypeCount(value.data, value.types)
+                expect(result).to.deep.equal(value.result)
+            })
+        })
+    });
+
+    describe('getTypes functionality', () => {
+
+        it('should return an array of numbers', ()=>{
+            let knowMapping = [
+                {
+                    data: [
+                        {
+                            "type": "typeA",
+                            "id": "2419781839",
+                            "description": "This Element With ID=2419781839 Is Just A Sample Object",
+                            "company": "Access Publishing Inc."
+                        },
+                        {
+                            "type": "typeB",
+                            "id": "2258712",
+                            "description": "This Element With ID=2258712 Is Just A Sample Object",
+                            "company": "Access Publishing Inc."
+                        },
+                        {
+                            "type": "typeB",
+                            "id": "2258712",
+                            "description": "This Element With ID=2258712 Is Just A Sample Object",
+                            "company": "Access Publishing Inc."
+                        }
+                    ],
+                    result: ["typeA", "typeB"],
+                }
+            ]
+            _.each(knowMapping, (value)=>{
+                let result = api.getTypes(value.data)
+                expect(result).to.deep.equal(value.result)
+            })
+        })
+    });
+
+    describe('shuffledItems functionality', () => {
+
+        it('should return an array of numbers', ()=>{
+
+                   let data = [
+                        {
+                            "type": "typeA",
+                            "id": "2419781839",
+                            "description": "This Element With ID=2419781839 Is Just A Sample Object",
+                            "company": "Access Publishing Inc."
+                        },
+                        {
+                            "type": "typeB",
+                            "id": "2258712",
+                            "description": "This Element With ID=2258712 Is Just A Sample Object",
+                            "company": "Access Publishing Inc."
+                        },
+                        {
+                            "type": "typeB",
+                            "id": "2258712",
+                            "description": "This Element With ID=2258712 Is Just A Sample Object",
+                            "company": "Access Publishing Inc."
+                        }
+                    ]
+
+                let result = api.shuffledItems(data)
+                expect(result).to.not.equal(data)
+
+        })
+    });
 })

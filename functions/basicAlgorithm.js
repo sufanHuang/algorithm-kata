@@ -105,10 +105,17 @@ module.exports = {
     },
 
     mutation: (arr)=>{
-        let wholeArray = arr[0].toLowerCase().split('')
-        let partArray = arr[1].toLowerCase().split('')
-        _.each( partArray,(letter)=>{
-            if(wholeArray.includes(letter)){
+        // let whole= arr[0].toLowerCase()
+        // let part = arr[1].toLowerCase()
+        // for (i=0;i<part.length;i++) {
+        //     if (whole.indexOf(part[i]) < 0)
+        //         return false;
+        // }
+        // return true;
+        let test = arr[1].toLowerCase().split('')
+        let target = arr[0].toLowerCase()
+        test.every((letter)=>{
+            if(target.indexOf(letter)<0){
                 return false
             }
         })

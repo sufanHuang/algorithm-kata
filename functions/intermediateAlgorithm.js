@@ -297,7 +297,48 @@ module.exports = {
         }
 
 
+    },
 
+    getTypeCount: (data, types) =>{
+        let counts = _.reduce(data, (totals, currentItem) => {
+            let { type } = currentItem
+            totals[type] = _.get(totals, type, 0) + 1
+            return totals
+        }, {})
+
+        return _.map(types, currentType => counts[currentType])
+    },
+
+    getTypes : (data)=>{
+        let types = []
+        data.forEach(item => {
+            if(!types.includes(item.type)){
+                types.push(item.type)
+            }
+        })
+       return types
+    },
+
+    shuffledItems: (data) => {
+        let shuffledItems = []
+        let trueOrFalse = ()=>{
+            let randomNumber = Math.random()
+            if (randomNumber > 0.5){
+                return true
+            }else{
+                return false
+            }
+        }
+
+        data.forEach(item=>{
+            if(trueOrFalse()){
+                shuffledItems.push(item)
+            }else{
+                shuffledItems.unshift(item)
+            }
+
+        })
+        return shuffledItems
     }
 
 
